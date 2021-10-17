@@ -27,7 +27,7 @@ default_view_singular() {
 */
 
 // No Direct Access
-defined ('_JEXEC') or die('Resticted Aceess');
+defined ('_JEXEC') or die('Restricted Access');
 
 ?>
 <h4>Detail View</h4>
@@ -46,7 +46,7 @@ default_view_plural() {
 */
 
 // No Direct Access
-defined ('_JEXEC') or die('Resticted Aceess');
+defined ('_JEXEC') or die('Restricted Access');
 
 ?>
 <h4>List View</h4>

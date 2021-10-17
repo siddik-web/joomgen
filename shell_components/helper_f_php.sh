@@ -18,7 +18,7 @@ create_frontend_helper() {
 */
 
 // No Direct Access
-defined ('_JEXEC') or die('Resticted Aceess');
+defined ('_JEXEC') or die('Restricted Access');
 
 use Joomla\CMS\Language\Text;
 

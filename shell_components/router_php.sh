@@ -17,8 +17,9 @@ create_router_php() {
 */
 
 // No Direct Access
-defined ('_JEXEC') or die('Resticted Aceess');
+defined ('_JEXEC') or die('Restricted Access');
 
+use Joomla\CMS\Factory;
 use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\Component\Router\RouterView;
 use Joomla\CMS\Component\Router\Rules\MenuRules;
@@ -53,7 +54,7 @@ class ${cname_ucf}Router extends RouterView
 
 function ${cName}BuildRoute(&\$query)
 {
-	\$app = JFactory::getApplication();
+	\$app = Factory::getApplication();
 	\$router = new ${cname_ucf}Router(\$app, \$app->getMenu());
 
 	return \$router->build(\$query);
@@ -61,7 +62,7 @@ function ${cName}BuildRoute(&\$query)
 
 function ${cName}ParseRoute(\$segments)
 {
-	\$app = JFactory::getApplication();
+	\$app = Factory::getApplication();
 	\$router = new ${cname_ucf}Router(\$app, \$app->getMenu());
 
 	return \$router->parse(\$segments);

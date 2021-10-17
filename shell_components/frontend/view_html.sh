@@ -27,7 +27,7 @@ view_html_singular() {
 */
 
 // No Direct Access
-defined ('_JEXEC') or die('Resticted Aceess');
+defined ('_JEXEC') or die('Restricted Access');
 
 use Joomla\CMS\MVC\View\HtmlView;
 
@@ -56,7 +56,7 @@ view_html_plural() {
 */
 
 // No Direct Access
-defined ('_JEXEC') or die('Resticted Aceess');
+defined ('_JEXEC') or die('Restricted Access');
 
 use Joomla\CMS\MVC\View\HtmlView;
 

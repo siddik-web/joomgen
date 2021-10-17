@@ -27,7 +27,7 @@ controller_singular() {
 */
 
 // No Direct Access
-defined ('_JEXEC') or die('Resticted Aceess');
+defined ('_JEXEC') or die('Restricted Access');
 use Joomla\CMS\MVC\Controller\FormController;
 
 class ${component_ucf}Controller${singular_ucf} extends FormController
@@ -54,7 +54,7 @@ controller_plural() {
 */
 
 // No Direct Access
-defined ('_JEXEC') or die('Resticted Aceess');
+defined ('_JEXEC') or die('Restricted Access');
 
 use Joomla\CMS\MVC\Controller\FormController;
 

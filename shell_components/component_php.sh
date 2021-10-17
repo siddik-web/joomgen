@@ -18,9 +18,12 @@ create_component_php() {
 */
 
 // No Direct Access
-defined ('_JEXEC') or die('Resticted Aceess');
+defined ('_JEXEC') or die('Restricted Access');
 
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Uri\Uri;
+use Joomla\CMS\MVC\Controller\BaseController;
 
 if(file_exists(JPATH_COMPONENT.'/vendor/autoload.php'))
 {
@@ -39,12 +42,12 @@ if(file_exists(JPATH_COMPONENT.'/helpers/${cName}.php'))
 
 //Load basic css file
 
-\$doc = JFactory::getDocument();
-\$doc->addStyleSheet(JUri::root(true) . '/administrator/components/com_${cName}/assets/css/style.css');
+\$doc = Factory::getDocument();
+\$doc->addStyleSheet(Uri::root(true) . '/administrator/components/com_${cName}/assets/css/style.css');
 
 // Execute the task.
-\$controller = JControllerLegacy::getInstance('${name_ucf}');
-\$controller->execute(JFactory::getApplication()->input->get('task'));
+\$controller = BaseController::getInstance('${name_ucf}');
+\$controller->execute(Factory::getApplication()->input->get('task'));
 \$controller->redirect();
     "
 }

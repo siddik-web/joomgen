@@ -17,7 +17,7 @@ create_controller_f_php() {
 */
 
 // No Direct Access
-defined ('_JEXEC') or die('Resticted Aceess');
+defined ('_JEXEC') or die('Restricted Access');
 
 class ${cname_ucf}Controller extends JControllerLegacy
 {

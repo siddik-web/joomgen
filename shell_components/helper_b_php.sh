@@ -18,7 +18,7 @@ create_backend_helper() {
 */
 
 // No Direct Access
-defined ('_JEXEC') or die('Resticted Aceess');
+defined ('_JEXEC') or die('Restricted Access');
 use Joomla\CMS\Language\Text;
 
 class ${name_ucf}Helper extends JHelperContent
