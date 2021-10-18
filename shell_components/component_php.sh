@@ -24,6 +24,7 @@ use Joomla\CMS\Language\Text;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Uri\Uri;
 use Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\Access\Exception\NotAllowed;
 
 if(file_exists(JPATH_COMPONENT.'/vendor/autoload.php'))
 {
@@ -32,7 +33,7 @@ if(file_exists(JPATH_COMPONENT.'/vendor/autoload.php'))
 
 if(!JFactory::getUser()->authorise('core.manage','com_${cName}'))
 {
-  return JError::raiseWarning(404,Text::_('JERROR_ALERTNOAUTHOR'));
+  throw new NotAllowed(Text::_('JERROR_ALERTNOAUTHOR'), 403);
 }
 
 if(file_exists(JPATH_COMPONENT.'/helpers/${cName}.php'))
