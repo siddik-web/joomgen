@@ -93,9 +93,7 @@ write_plural_controller(){
 // No Direct Access
 defined ('_JEXEC') or die('Restricted Access');
 
-use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Controller\AdminController;
-use Joomla\Utilities\ArrayHelper;
 
 class "${component_ucf}"Controller"${plural_ucf}" extends AdminController
 {
