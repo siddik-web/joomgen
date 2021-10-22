@@ -657,21 +657,26 @@ use Joomla\CMS\Router\Route;
 \$doc = Factory::getDocument();
 HTMLHelper::_('behavior.formvalidator');
 HTMLHelper::_('behavior.keepalive');
-HTMLHelper::_('formbehavior.chosen','select',null,array('disable_search_threshold' => 0));
+if (JVERSION < 4)
+{
+	HTMLHelper::_('formbehavior.chosen','select',null,array('disable_search_threshold' => 0));
+}
+\$rowClass = JVERSION < 4 ? 'row-fluid' : 'row';
+\$colClass = JVERSION < 4 ? 'span' : 'col-lg-';
 ?>
 
 <form action=\"<?php echo Route::_('index.php?option=com_${component_name}&view=${vSingular}&layout=edit&id=' . (int) \$this->item->id); ?>\" name=\"adminForm\" id=\"adminForm\" method=\"post\" class=\"form-validate\">
-	<?php if (!empty(\$this->sidebar)) { ?>
-    <div id=\"j-sidebar-container\" class=\"span2\">
+	<?php if (JVERSION < 4 && !empty(\$this->sidebar)) { ?>
+    <div id=\"j-sidebar-container\" class=\"<?php echo \$colClass;?>2\">
 		<?php echo \$this->sidebar; ?>
     </div>
-    <div id=\"j-main-container\" class=\"span10\" >
+    <div id=\"j-main-container\" class=\"<?php echo \$colClass;?>10\" >
 		<?php } else { ?>
             <div id=\"j-main-container\"></div>
 		<?php } ?>
 	<div class=\"form-horizontal\">
-		<div class=\"row-fluid\">
-			<div class=\"span12\">
+		<div class=\"<?php echo \$rowClass;?>\">
+			<div class=\"<?php echo \$colClass;?>12\">
 				<?php echo \$this->form->renderFieldset('basic'); ?>
 			</div>
 		</div>
@@ -703,6 +708,7 @@ use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+use Joomla\CMS\Session\Session;
 
 \$user 		= Factory::getUser();
 \$listOrder = \$this->escape(\$this->state->get('list.ordering'));
@@ -710,16 +716,26 @@ use Joomla\CMS\Router\Route;
 \$canOrder 	= \$user->authorise('core.edit.state','com_${component_name}');
 \$saveOrder = (\$listOrder == 'a.ordering');
 
-if(\$saveOrder)
+if(\$saveOrder && !empty(\$this->items))
 {
-	\$saveOrderingUrl = 'index.php?option=com_${component_name}&task=${vPlural}.saveOrderAjax&tmpl=component';
-	\$html = HTMLHelper::_('sortablelist.sortable', '"${vSingular}"List','adminForm', strtolower(\$listDirn),\$saveOrderingUrl);
+	if (JVERSION < 4)
+	{
+		\$saveOrderingUrl = 'index.php?option=com_${component_name}&task=${vPlural}.saveOrderAjax&tmpl=component';
+		\$html = HTMLHelper::_('sortablelist.sortable', '"${vSingular}"List','adminForm', strtolower(\$listDirn),\$saveOrderingUrl);
+	}
+	else
+	{
+		\$saveOrderingUrl = 'index.php?option=com_${component_name}&task=${vPlural}.saveOrderAjax&tmpl=component&' . Session::getFormToken() . '=1';
+		\$html = HTMLHelper::_('dragablelist.dragable');
+	}
+	
 }
 
 HTMLHelper::_('jquery.framework', false);
 ?>
 
 <script type=\"text/javascript\">
+window.addEventListener("DOMContentLoaded", e => {
     Joomla.orderTable = function() {
         table = document.getElementById('sortTable');
         direction = document.getElementById('directionTable');
@@ -731,10 +747,12 @@ HTMLHelper::_('jquery.framework', false);
         }
         Joomla.tableOrdering(order, dirn, '');
     }
+})
+
 </script>
 
 <form action=\"<?php echo Route::_('index.php?option=com_${component_name}&view=${vPlural}'); ?>\" method=\"POST\" name=\"adminForm\" id=\"adminForm\">
-	<?php if (!empty(\$this->sidebar)) { ?>
+	<?php if (JVERSION < 4 && !empty(\$this->sidebar)) { ?>
 	<div id=\"j-sidebar-container\" class=\"span2\">
 		<?php echo \$this->sidebar; ?>
 	</div>
@@ -788,8 +806,11 @@ HTMLHelper::_('jquery.framework', false);
 						</td>
 					</tr>
 				</tfoot>
-
+				<?php if (JVERSION < 4 ) : ?>
 				<tbody>
+				<?php else :?>
+				<tbody <?php if (\$saveOrder) :?> class=\"js-draggable\" data-url=\"<?php echo \$saveOrderingUrl; ?>\" data-direction=\"<?php echo strtolower(\$listDirn); ?>\" data-nested=\"false\"<?php endif; ?>>
+				<?php endif; ?>
 					<?php foreach(\$this->items as \$i => \$item): ?>
 
 						<?php
@@ -797,8 +818,11 @@ HTMLHelper::_('jquery.framework', false);
 						\$canChange		= \$user->authorise('core.edit.state', 'com_${component_name}') && \$canCheckin;
 						\$canEdit		= \$user->authorise( 'core.edit', 'com_${component_name}' );
 						?>
-
-						<tr class=\"row<?php echo \$i % 2; ?>\" sortable-group-id=\"1\">
+						<?php if(JVERSION < 4) :?>
+						<tr>
+						<?php else: ?>
+						<tr class=\"row<?php echo \$i % 2; ?>\" data-draggable-group=\"1\">
+						<?php endif; ?>
 							<td class=\"order nowrap center hidden-phone\">
 								<?php if(\$canChange) :
 									\$disableClassName = '';
