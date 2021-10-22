@@ -19,7 +19,9 @@ create_controller_f_php() {
 // No Direct Access
 defined ('_JEXEC') or die('Restricted Access');
 
-class ${cname_ucf}Controller extends JControllerLegacy
+use Joomla\CMS\MVC\Controller\BaseController;
+
+class ${cname_ucf}Controller extends BaseController
 {
   public function display(\$cachable=false, \$urlparams=false)
   {
