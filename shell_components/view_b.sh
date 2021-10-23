@@ -7,6 +7,9 @@ DIR=`pwd`
 year=`date +%Y`
 
 component_name="$1"
+author_name="$2"
+email="$3"
+url="$4"
 
 echo "Enter view name (singular): "
 read vSingular
@@ -30,10 +33,11 @@ write_singular_controller(){
 	echo "
 <?php
 /**
-* @package com_${component_name}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Administrator
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access
@@ -84,10 +88,11 @@ write_plural_controller(){
 		echo "
 <?php
 /**
-* @package com_${component_name}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Administrator
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access
@@ -110,10 +115,11 @@ write_singular_model(){
 	echo "
 <?php
 /**
-* @package com_${component_name}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Administrator
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access
@@ -236,10 +242,11 @@ write_plural_model(){
 	echo "
 <?php
 /**
-* @package com_${component_name}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Administrator
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access
@@ -340,10 +347,11 @@ write_table(){
 	echo "
 <?php
 /**
-* @package com_${component_name}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Administrator
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access
@@ -480,10 +488,11 @@ write_singular_view_dot_html(){
 	echo "
 <?php
 /**
-* @package com_${component_name}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Administrator
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access
@@ -545,10 +554,11 @@ write_plural_view_dot_html(){
 	echo "
 <?php
 /**
-* @package com_${component_name}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Administrator
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access
@@ -641,10 +651,11 @@ write_singular_edit_dot_php(){
 	echo "
 <?php
 /**
-* @package com_${component_name}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Administrator
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access
@@ -694,10 +705,11 @@ write_plural_default_dot_php(){
 	echo "
 <?php
 /**
-* @package com_${component_name}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Administrator
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access

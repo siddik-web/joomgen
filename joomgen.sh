@@ -50,7 +50,7 @@ then
     echo "Copyright: (Copyright (c) 2010 - ${year} JoomShaper. All rights reserved.) "
     read cCopyright
 
-    echo "Version:(1.0) "
+    echo "Version:(1.0.0) "
     read cVersion
 
     echo "License:(GNU) "
@@ -65,8 +65,8 @@ then
     if [ -z "$cAuthor" ]; then cAuthor="JoomShaper"; fi;
     if [ -z "$cEmail" ]; then cEmail="support@joomshaper.com"; fi;
     if [ -z "$cUrl" ]; then cUrl="https://www.joomshaper.com"; fi;
-    if [ -z "$cCopyright" ]; then cCopyright="Copyright (c) 2010 - ${year} JoomShaper. All rights reserved."; fi;
-    if [ -z "$cVersion" ]; then cVersion="1.0"; fi;
+    if [ -z "$cCopyright" ]; then cCopyright="Copyright (c) 2010 - ${year} ${cAuthor}. All rights reserved."; fi;
+    if [ -z "$cVersion" ]; then cVersion="1.0.0"; fi;
     if [ -z "$cLicense" ]; then cLicense="GNU General Public License version 2 or later"; fi;
     
     ################create administrator###############
@@ -111,7 +111,7 @@ then
         elif [ "${folder}" == "helpers" ]; then
             mkdir -p "${adminFolderDir}"
             (directory_created "${adminFolderDir}")
-            bash ${root_dir}/shell_components/helper_b_php.sh "${adminFolderDir}" "${cName}"
+            bash ${root_dir}/shell_components/helper_b_php.sh "${adminFolderDir}" "${cName}" "$cAuthor" "$cEmail" "$cUrl"
             (file_created "${adminFolderDir}/${cName}.php")
         fi
     done
@@ -130,15 +130,15 @@ then
     (file_created "${adminComponentDir}/config.xml")
 
     #create component.php file
-    bash ${root_dir}/shell_components/component_php.sh "$adminComponentDir" "$cName"
+    bash ${root_dir}/shell_components/component_php.sh "$adminComponentDir" "$cName" "$cAuthor" "$cEmail" "$cUrl"
     (file_created "${adminComponentDir}/${cname}.php")
 
     #create controller.php file
-    bash ${root_dir}/shell_components/controller_b_php.sh "$adminComponentDir" "$cName"
+    bash ${root_dir}/shell_components/controller_b_php.sh "$adminComponentDir" "$cName" "$cAuthor" "$cEmail" "$cUrl"
     (file_created "${adminComponentDir}/controller.php")
 
     #create installer.script.php file 
-    bash ${root_dir}/shell_components/installer_script_php.sh "$adminComponentDir" "$cName"
+    bash ${root_dir}/shell_components/installer_script_php.sh "$adminComponentDir" "$cName" "$cAuthor" "$cEmail" "$cUrl"
     (file_created "${adminComponentDir}/installer.script.php")
 
     #admin language files
@@ -178,10 +178,8 @@ then
         elif [ "${sFolder}" == "helpers" ]; then
             mkdir -p "${siteFolderDir}"
             (directory_created "${siteFolderDir}")
-            bash ${root_dir}/shell_components/helper_f_php.sh "${siteFolderDir}" "${cName}"
+            bash ${root_dir}/shell_components/helper_f_php.sh "${siteFolderDir}" "${cName}" "$cAuthor" "$cEmail" "$cUrl"
             (file_created "${siteFolderDir}/helper.php")
-            bash ${root_dir}/shell_components/legacyrouter_php.sh "${siteFolderDir}" "${cName}"
-            (file_created "${siteFolderDir}/legacyrouter.php")
         elif [ "${sFolder}" == "layouts" ]; then
             mkdir -p "${siteFolderDir}"
             (directory_created "${siteFolderDir}")
@@ -196,15 +194,15 @@ then
 
     #create site basic files
     #create componentName.php 
-    bash ${root_dir}/shell_components/component_name_php.sh "${siteComponentDir}" "${cName}"
+    bash ${root_dir}/shell_components/component_name_php.sh "${siteComponentDir}" "${cName}" "$cAuthor" "$cEmail" "$cUrl"
     (file_created "${siteComponentDir}/${cName}.php")
     
     #create controller.php 
-    bash ${root_dir}/shell_components/controller_f_php.sh "${siteComponentDir}" "${cName}"
+    bash ${root_dir}/shell_components/controller_f_php.sh "${siteComponentDir}" "${cName}" "$cAuthor" "$cEmail" "$cUrl"
     (file_created "${siteComponentDir}/controller.php")
 
     #create router.php 
-    bash ${root_dir}/shell_components/router_php.sh "${siteComponentDir}" "${cName}"
+    bash ${root_dir}/shell_components/router_php.sh "${siteComponentDir}" "${cName}" "$cAuthor" "$cEmail" "$cUrl"
     (file_created "${siteComponentDir}/router.php")
 
     #site language files
@@ -231,9 +229,9 @@ elif [ "${option}" == "-v" ]; then
     if [ -z "$cName" ]; then echo "You must need to provide the component name."; exit; fi;
 
     if [ "${view_type}" == "-b" ]; then
-        bash ${root_dir}/shell_components/view_b.sh "${cName}"
+        bash ${root_dir}/shell_components/view_b.sh "${cName}" "$cAuthor" "$cEmail" "$cUrl"
     elif [ "${view_type}" == "-f" ]; then
-        bash ${root_dir}/shell_components/frontend/view_f.sh "${cName}"
+        bash ${root_dir}/shell_components/frontend/view_f.sh "${cName}" "$cAuthor" "$cEmail" "$cUrl"
     fi
 
 fi

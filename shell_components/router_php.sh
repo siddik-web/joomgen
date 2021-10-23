@@ -2,6 +2,10 @@
 date=`date`
 year=`date +%Y`
 
+author_name="$3"
+email="$4"
+url="$5"
+
 #functions
 create_router_php() {
     cName="$1"
@@ -10,10 +14,11 @@ create_router_php() {
     echo "
 <?php
 /**
-* @package com_${cName}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Site
+* @subpackage 	com_${cName}
+* @author 		${author_name} ${email}
+* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access
@@ -38,17 +43,8 @@ class ${cname_ucf}Router extends RouterView
         //Register your views here
         parent::__construct(\$app, \$menu);	
 		\$this->attachRule(new NomenuRules(\$this));
-
-		if (\$params->get('sef_advanced', 0))
-		{
-			\$this->attachRule(new MenuRules(\$this));
-			\$this->attachRule(new StandardRules(\$this));
-		}
-		else
-		{
-			JLoader::register('${cname_ucf}RouterRulesLegacy', __DIR__ . '/helpers/legacyrouter.php');
-			\$this->attachRule(new ${cname_ucf}RouterRulesLegacy(\$this));
-		}
+		\$this->attachRule(new MenuRules(\$this));
+		\$this->attachRule(new StandardRules(\$this));
     }
 }
 

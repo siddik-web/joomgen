@@ -2,6 +2,11 @@
 date=`date`
 year=`date +%Y`
 
+component_name="$2"
+author_name="$3"
+email="$4"
+url="$5"
+
 #functions
 create_installer_script_php() {
     cName="$1"
@@ -10,10 +15,11 @@ create_installer_script_php() {
     echo "
     <?php
 /**
-* @package com_${cName}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Administrator
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license      GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access

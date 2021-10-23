@@ -2,6 +2,9 @@
 date=`date`
 year=`date +%Y`
 
+author_name="$3"
+email="$4"
+url="$5"
 
 #functions
 create_component_php() {
@@ -11,10 +14,11 @@ create_component_php() {
     echo "
 <?php
 /**
-* @package com_${cName}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Administrator
+* @subpackage 	com_${cName}
+* @author 		  ${author_name} ${email}
+* @copyright 	  Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @license      GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access
@@ -31,7 +35,7 @@ if(file_exists(JPATH_COMPONENT.'/vendor/autoload.php'))
   include JPATH_COMPONENT.'/vendor/autoload.php';
 }
 
-if(!JFactory::getUser()->authorise('core.manage','com_${cName}'))
+if(!Factory::getUser()->authorise('core.manage','com_${cName}'))
 {
   throw new NotAllowed(Text::_('JERROR_ALERTNOAUTHOR'), 403);
 }
