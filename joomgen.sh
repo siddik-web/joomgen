@@ -218,6 +218,18 @@ elif [ "${option}" == "-v" ]; then
     echo "Component name: (without com_)"
     read cName
 
+    echo "Author: (JoomShaper) "
+    read cAuthor
+
+    echo "Author Email: (support@joomshaper.com) "
+    read cEmail
+
+    echo "Author Url: (https://www.joomshaper.com) "
+    read cUrl
+
+    echo "Copyright: (Copyright (c) 2010 - ${year} JoomShaper. All rights reserved.) "
+    read cCopyright
+
     if [ -d "${DIR}/administrator/components/com_${cName}" ]; then
         echo "Component found! Running view creation..";
     else 
@@ -228,10 +240,17 @@ elif [ "${option}" == "-v" ]; then
     #check if component name is provided or not
     if [ -z "$cName" ]; then echo "You must need to provide the component name."; exit; fi;
 
+    if [ -z "$cAuthor" ]; then cAuthor="JoomShaper"; fi;
+    if [ -z "$cEmail" ]; then cEmail="support@joomshaper.com"; fi;
+    if [ -z "$cUrl" ]; then cUrl="https://www.joomshaper.com"; fi;
+    if [ -z "$cCopyright" ]; then cCopyright="Copyright (c) 2010 - ${year} ${cAuthor} <${cUrl}>. All rights reserved."; fi;
+    if [ -z "$cVersion" ]; then cVersion="1.0.0"; fi;
+    if [ -z "$cLicense" ]; then cLicense="GNU General Public License version 2 or later"; fi;
+
     if [ "${view_type}" == "-b" ]; then
-        bash ${root_dir}/shell_components/view_b.sh "${cName}" "$cAuthor" "$cEmail" "$cUrl"
+        bash ${root_dir}/shell_components/view_b.sh "${cName}" "$cAuthor" "$cEmail" "$cUrl" "$cCopyright"
     elif [ "${view_type}" == "-f" ]; then
-        bash ${root_dir}/shell_components/frontend/view_f.sh "${cName}" "$cAuthor" "$cEmail" "$cUrl"
+        bash ${root_dir}/shell_components/frontend/view_f.sh "${cName}" "$cAuthor" "$cEmail" "$cUrl" "$cCopyright"
     fi
 
 fi

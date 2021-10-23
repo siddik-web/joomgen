@@ -10,6 +10,7 @@ component_name="$1"
 author_name="$2"
 email="$3"
 url="$4"
+copyright="$5"
 
 echo "Enter view name (singular): "
 read vSingular
@@ -36,7 +37,7 @@ write_singular_controller(){
 * @package    	Joomla.Administrator
 * @subpackage 	com_${component_name}
 * @author 		${author_name} ${email}
-* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @copyright 	${copyright}
 * @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
@@ -91,7 +92,7 @@ write_plural_controller(){
 * @package    	Joomla.Administrator
 * @subpackage 	com_${component_name}
 * @author 		${author_name} ${email}
-* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @copyright 	${copyright}
 * @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
@@ -118,7 +119,7 @@ write_singular_model(){
 * @package    	Joomla.Administrator
 * @subpackage 	com_${component_name}
 * @author 		${author_name} ${email}
-* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @copyright 	${copyright}
 * @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
@@ -245,7 +246,7 @@ write_plural_model(){
 * @package    	Joomla.Administrator
 * @subpackage 	com_${component_name}
 * @author 		${author_name} ${email}
-* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @copyright 	${copyright}
 * @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
@@ -350,7 +351,7 @@ write_table(){
 * @package    	Joomla.Administrator
 * @subpackage 	com_${component_name}
 * @author 		${author_name} ${email}
-* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @copyright 	${copyright}
 * @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
@@ -491,7 +492,7 @@ write_singular_view_dot_html(){
 * @package    	Joomla.Administrator
 * @subpackage 	com_${component_name}
 * @author 		${author_name} ${email}
-* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @copyright 	${copyright}
 * @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
@@ -557,7 +558,7 @@ write_plural_view_dot_html(){
 * @package    	Joomla.Administrator
 * @subpackage 	com_${component_name}
 * @author 		${author_name} ${email}
-* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @copyright 	${copyright}
 * @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
@@ -654,7 +655,7 @@ write_singular_edit_dot_php(){
 * @package    	Joomla.Administrator
 * @subpackage 	com_${component_name}
 * @author 		${author_name} ${email}
-* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @copyright 	${copyright}
 * @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
@@ -708,7 +709,7 @@ write_plural_default_dot_php(){
 * @package    	Joomla.Administrator
 * @subpackage 	com_${component_name}
 * @author 		${author_name} ${email}
-* @copyright 	Copyright (c) 2010 - ${year} ${author_name} ${url}
+* @copyright 	${copyright}
 * @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
