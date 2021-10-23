@@ -8,6 +8,9 @@ bash_dir="$(cd "$(dirname "$0")" && pwd -P)"
 year=`date +%Y`
 
 component_name="$1"
+cAuthor="$2"
+cEmail="$3"
+cCopyright="$4"
 
 echo "Enter view name (singular): "
 read vSingular
@@ -39,15 +42,15 @@ console_log() {
 controllerDir="${DIR}/components/com_${component_name}/controllers"
 mkdir -p "${controllerDir}"
 (directory_created "${controllerDir}")
-bash ${bash_dir}/controller_f.sh "${controllerDir}" "${component_name}" "${vSingular}" "${vPlural}"
+bash ${bash_dir}/controller_f.sh "${controllerDir}" "${component_name}" "${vSingular}" "${vPlural}" "$cAuthor" "$cEmail" "$cCopyright"
 
 #creating model files
 modelDir="${DIR}/components/com_${component_name}/models"
 mkdir -p "${modelDir}"
 (directory_created "${modelDir}")
-bash ${bash_dir}/model_f.sh "${modelDir}" "${component_name}" "${vSingular}" "${vPlural}"
+bash ${bash_dir}/model_f.sh "${modelDir}" "${component_name}" "${vSingular}" "${vPlural}" "$cAuthor" "$cEmail" "$cCopyright"
 
 #creating view files
 viewDir="${DIR}/components/com_${component_name}/views"
-bash ${bash_dir}/view_html.sh "${viewDir}" "${component_name}" "${vSingular}" "${vPlural}"
-bash ${bash_dir}/view_default.sh "${viewDir}" "${component_name}" "${vSingular}" "${vPlural}"
+bash ${bash_dir}/view_html.sh "${viewDir}" "${component_name}" "${vSingular}" "${vPlural}" "$cAuthor" "$cEmail" "$cCopyright"
+bash ${bash_dir}/view_default.sh "${viewDir}" "${component_name}" "${vSingular}" "${vPlural}" "$cAuthor" "$cEmail" "$cCopyright"

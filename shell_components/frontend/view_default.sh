@@ -6,6 +6,9 @@ directory="$1"
 component_name="$2"
 vSingular="$3"
 vPlural="$4"
+author_name="$5"
+email="$6"
+copyright="$7"
 
 component_ucf="$(tr a-z A-Z <<< ${component_name:0:1})${component_name:1}"
 component_uca="$(tr a-z A-Z <<<${component_name})"
@@ -20,10 +23,11 @@ default_view_singular() {
     echo "
 <?php
 /**
-* @package com_${component_name}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Site
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	${copyright}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access
@@ -39,10 +43,11 @@ default_view_plural() {
     echo "
 <?php
 /**
-* @package com_${component_name}
-* @author JoomShaper http://www.joomshaper.com
-* @copyright Copyright (c) 2010 - ${year} JoomShaper
-* @license http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 or later
+* @package    	Joomla.Site
+* @subpackage 	com_${component_name}
+* @author 		${author_name} ${email}
+* @copyright 	${copyright}
+* @license     	GNU General Public License version 2 or later; see http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 // No Direct Access

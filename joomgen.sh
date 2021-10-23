@@ -248,9 +248,9 @@ elif [ "${option}" == "-v" ]; then
     if [ -z "$cLicense" ]; then cLicense="GNU General Public License version 2 or later"; fi;
 
     if [ "${view_type}" == "-b" ]; then
-        bash ${root_dir}/shell_components/view_b.sh "${cName}" "$cAuthor" "$cEmail" "$cUrl" "$cCopyright"
+        bash ${root_dir}/shell_components/view_b.sh "${cName}" "$cAuthor" "$cEmail" "$cCopyright"
     elif [ "${view_type}" == "-f" ]; then
-        bash ${root_dir}/shell_components/frontend/view_f.sh "${cName}" "$cAuthor" "$cEmail" "$cUrl" "$cCopyright"
+        bash ${root_dir}/shell_components/frontend/view_f.sh "${cName}" "$cAuthor" "$cEmail" "$cCopyright"
     fi
 
 fi
