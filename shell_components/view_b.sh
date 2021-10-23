@@ -358,10 +358,13 @@ write_table(){
 // No Direct Access
 defined ('_JEXEC') or die('Restricted Access');
 
-use Joomla\CMS\Application\ApplicationHelper;
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
+use Joomla\CMS\Table\Table;
+use Joomla\CMS\Language\Text;
+use Joomla\Utilities\ArrayHelper;
+use Joomla\CMS\Application\ApplicationHelper;
 
 class "${component_ucf}"Table"${singular_ucf}" extends Table
 {
@@ -438,7 +441,7 @@ class "${component_ucf}"Table"${singular_ucf}" extends Table
 	public function publish(\$pks = null, \$published = 1, \$userId = 0)
 	{
 		\$k = \$this->_tbl_key;
-		JArrayHelper::toInteger(\$pks);
+		ArrayHelper::toInteger(\$pks);
 		\$publilshed = (int) \$published;
 
 		if (empty(\$pks))
