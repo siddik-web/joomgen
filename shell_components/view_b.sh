@@ -908,7 +908,7 @@ window.addEventListener(\"DOMContentLoaded\", e => {
 				</tbody>
 			</table>
 		<?php } else { ?>
-			<div class=\"no-record-found\"><?php echo Text::_('COM_${component_uca}_NO_RECORD_FOUND'); ?></div>
+			<div class=\"alert alert-danger\"><?php echo Text::_('COM_${component_uca}_NO_RECORD_FOUND'); ?></div>
 		<?php } ?>
 
 		<input type=\"hidden\" name=\"task\" value=\"\" />
