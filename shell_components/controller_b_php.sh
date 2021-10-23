@@ -24,7 +24,7 @@ create_controller_b_php() {
 // No Direct Access
 defined ('_JEXEC') or die('Restricted Access');
 
-use Joomla\CMS\Lanugage\Text;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\MVC\Controller\BaseController;
 use Joomla\CMS\Router\Route;
 
