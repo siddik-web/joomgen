@@ -748,7 +748,7 @@ HTMLHelper::_('jquery.framework', false);
 ?>
 
 <script type=\"text/javascript\">
-window.addEventListener("DOMContentLoaded", e => {
+window.addEventListener(\"DOMContentLoaded\", e => {
     Joomla.orderTable = function() {
         table = document.getElementById('sortTable');
         direction = document.getElementById('directionTable');
