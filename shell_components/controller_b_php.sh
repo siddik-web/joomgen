@@ -39,8 +39,11 @@ class ${cname_ucf}Controller extends BaseController
 
 		if(\$view == 'default_view_singular' && \$layout == 'edit' && !\$this->checkEditId('com_${cName}.edit.default_view_singular',\$id))
 		{
-			\$this->setError(Text::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID',\$id));
-			\$this->setMessage(\$this->getError(),'error');
+			if (!\count(\$this->app->getMessageQueue()))
+			{
+				\$this->setMessage(Text::sprintf('JLIB_APPLICATION_ERROR_UNHELD_ID',\$id),'error');
+			}
+
 			\$this->setRedirect(Route::_('index.php?option=com_${cName}&view=default_view_plural',false));
 
 			return false;
