@@ -256,8 +256,21 @@ defined ('_JEXEC') or die('Restricted Access');
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Model\ListModel;
 
+/**
+ * Methods supporting a list of ${singular_ucf} records.
+ *
+ * @since  1.0.0
+ */
 class "${component_ucf}"Model"${plural_ucf}" extends ListModel
 {
+	/**
+	 * Constructor.
+	 *
+	 * @param   array  \$config  An optional associative array of configuration settings.
+	 *
+	 * @since   1.0.0
+	 * @see     JControllerLegacy
+	 */
 	public function __construct(array \$config = array())
 	{
 		if (empty(\$config['filter_fields']))
@@ -268,13 +281,24 @@ class "${component_ucf}"Model"${plural_ucf}" extends ListModel
 				'ordering', 'a.ordering',
 				'created_by', 'a.created_by',
 				'created', 'a.created',
-				'published', 'a.published',
-				'id', 'a.id'
+				'published', 'a.published'
 			];
 		}
 		parent::__construct(\$config);
 	}
 
+	/**
+	 * Method to auto-populate the model state.
+	 *
+	 * Note. Calling getState in this method will result in recursion.
+	 *
+	 * @param   string  \$ordering   An optional ordering field.
+	 * @param   string  \$direction  An optional direction (asc|desc).
+	 *
+	 * @return  void
+	 *
+	 * @since   1.0.0
+	 */
 	protected function populateState(\$ordering = 'a.ordering', \$direction = 'asc')
 	{
 		\$app = Factory::getApplication();
@@ -283,28 +307,56 @@ class "${component_ucf}"Model"${plural_ucf}" extends ListModel
 		\$search = \$this->getUserStateFromRequest(\$this->context . '.filter.search', 'filter_search');
 		\$this->setState('filter.search', \$search);
 
-		\$access = \$this->getUserStateFromRequest(\$this->context . '.filter.access', 'filter_access');
-		\$this->setState('filter.access', \$access);
-
 		\$published = \$this->getUserStateFromRequest(\$this->context . '.filter.published', 'filter_published', '');
 		\$this->setState('filter.published', \$published);
 
 		\$language = \$this->getUserStateFromRequest(\$this->context . '.filter.language', 'filter_language', '');
 		\$this->setState('filter.language', \$language);
 
+		\$formSubmited = \$app->input->post->get('form_submited');
+
+		\$access = \$this->getUserStateFromRequest(\$this->context . '.filter.access', 'filter_access');
+
+		if (\$formSubmited)
+		{
+			\$access = \$app->input->post->get('access');
+			\$this->setState('filter.access', \$access);
+		}
+
 		parent::populateState(\$ordering, \$direction);
 	}
 
+	/**
+	 * Method to get a store id based on model configuration state.
+	 *
+	 * This is necessary because the model is used by the component and
+	 * different modules that might need different sets of data or different
+	 * ordering requirements.
+	 *
+	 * @param   string  \id  A prefix for the store id.
+	 *
+	 * @return  string  A store id.
+	 *
+	 * @since   1.0.0
+	 */
 	protected function getStoreId(\$id = '')
 	{
+		// Compile the store id.
 		\$id .= ':' . \$this->getState('filter.search');
-		\$id .= ':' . \$this->getState('filter.access');
+		\$id .= ':' . serialize(\$this->getState('filter.access'));
 		\$id .= ':' . \$this->getState('filter.published');
 		\$id .= ':' . \$this->getState('filter.language');
 
 		return parent::getStoreId(\$id);
 	}
 
+	/**
+	 * Build an SQL query to load the list data.
+	 *
+	 * @return  JDatabaseQuery
+	 *
+	 * @since   1.0.0
+	 */
 	protected function getListQuery()
 	{
 		\$app 	= Factory::getApplication();
