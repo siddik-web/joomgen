@@ -413,7 +413,6 @@ defined ('_JEXEC') or die('Restricted Access');
 use Joomla\CMS\Date\Date;
 use Joomla\CMS\Factory;
 use Joomla\CMS\Table\Table;
-use Joomla\CMS\Table\Table;
 use Joomla\CMS\Language\Text;
 use Joomla\Utilities\ArrayHelper;
 use Joomla\CMS\Application\ApplicationHelper;
